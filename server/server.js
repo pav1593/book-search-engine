@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
-const routes = require('./routes');
+//const routes = require('./routes'); // refactored
 
 const {ApolloServer }=require('apollo-server-express');
 const { typeDefs, resolvers } = require('../server/schemas');
@@ -21,7 +21,11 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.use(routes);
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
+
+//app.use(routes); //refactored
 
 const startApolloServer=async(typeDefs,resolvers)=>{
   await server.start();
